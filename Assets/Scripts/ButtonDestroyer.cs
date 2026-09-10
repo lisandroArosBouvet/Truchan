@@ -68,9 +68,4 @@ public class ButtonDestroyer : MonoBehaviour
       }
     }
   }
-
-  private void DestroyButtonsOfKey(KeyCode keyCode)
-  {
-
-  }
 }

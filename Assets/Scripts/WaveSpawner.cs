@@ -12,8 +12,14 @@ public class WaveSpawner : MonoBehaviour
   [SerializeField] public UnityEvent OnWaveCollectionFinished;
   List<TruchanButton> currentWaveButtons = new();
   [SerializeField] AudioManager audioManager;
-  bool finishedWaveCollection;
-  private void Awake()
+
+    public float pressTime = 2f;
+    public float holdTime = 3f;
+    public float quickTime = 4f;
+    public float baseTimePressAllButtons = 5f;
+    public float timeUntilNextWave = 2;
+    public int buttonDamage = 10;
+    private void Awake()
   {
   }
 
@@ -26,24 +32,30 @@ public class WaveSpawner : MonoBehaviour
       yield return new WaitUntil(() => currentWaveButtons.Any() == false);
       if (i != waveCollection.waves.Count - 1)
       {
+                DifficultyManager.Instance.EvaluateResultOnWave();
         OnWaveFinished?.Invoke();
-        yield return new WaitForSeconds(wave.timeUntilNextWave);
+        yield return new WaitForSeconds(timeUntilNextWave);
       }
     }
     OnWaveCollectionFinished?.Invoke();
-  }
-  private void Update()
-  {
   }
 
   private void SpawnButtonWave(ButtonWave buttonWave)
   {
         List<RootButton> spawnedButtons = new(possibleButtons);
-        spawnedButtons.OrderBy(x => Random.value).ToList();
+        spawnedButtons = spawnedButtons.OrderBy(x => Random.value).ToList();
         int length = possibleButtons.Count,
             pressCount = buttonWave.button_press,
             holdCount = buttonWave.button_hold,
             quickCount = buttonWave.button_quick;
+
+        float timeToPressAllButtons =
+            baseTimePressAllButtons +
+            pressCount * pressTime +
+            holdCount * holdTime +
+            quickCount * quickTime;
+        timeToPressAllButtons *= DifficultyManager.Instance.currentDifficulty;
+        DifficultyManager.Instance.SetWaveFullTime(timeToPressAllButtons);
         for (int i = 0; i < length; i++)
         {
             TruchanButton b;
@@ -65,14 +77,14 @@ public class WaveSpawner : MonoBehaviour
             else
                 break;
             spawnedButtons.RemoveAt(0);
-            SpawnButton(buttonWave, b);
+            SpawnButton(b, timeToPressAllButtons);
         }
     }
-    private void SpawnButton(ButtonWave wave, TruchanButton buttonPrefab)
+    private void SpawnButton(TruchanButton buttonPrefab, float timeToDissapear)
   {
     var spawnedButton = Instantiate(buttonPrefab);
-    spawnedButton.duration = wave.timeToPressAllButtons;
-    spawnedButton.damage = wave.buttonDamage;
+    spawnedButton.duration = timeToDissapear;
+    spawnedButton.damage = buttonDamage;
     int iterations = 0;
     while (iterations < 15 && IsButtonOverlappingOtherButtons(spawnedButton))
     {
@@ -115,10 +127,5 @@ public class WaveSpawner : MonoBehaviour
             Random.Range(bounds.min.y, bounds.max.y),
             Random.Range(bounds.min.z, bounds.max.z)
         );
-  }
-
-  private void OnButtonDestroyed()
-  {
-
   }
 }

@@ -13,117 +13,48 @@ MonoBehaviour:
   m_Name: LevitacionButtonWaves
   m_EditorClassIdentifier: Assembly-CSharp::ButtonWaveCollection
   waves:
-  - spawnRandomButtons: 1
-    randomButtonAmount: 2
-    specificButtons: []
-    timeToPressAllButtons: 10
-    timeUntilNextWave: 4
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 3
-    specificButtons: []
-    timeToPressAllButtons: 6
-    timeUntilNextWave: 1
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 2
-    specificButtons: []
-    timeToPressAllButtons: 6
-    timeUntilNextWave: 4
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 5
-    specificButtons: []
-    timeToPressAllButtons: 8
-    timeUntilNextWave: 1
-    buttonDamage: 5
-  - spawnRandomButtons: 0
-    randomButtonAmount: 0
-    specificButtons:
-    - {fileID: 5465185492187562849, guid: e8cc0b4c1bfa61243a14872de15b33a0, type: 3}
-    - {fileID: 5465185492187562849, guid: 8d20e4e0db4e1e246a2bfa6e865d9c64, type: 3}
-    - {fileID: 5465185492187562849, guid: 5e4b63182f5e61048b0cfe25d974289f, type: 3}
-    - {fileID: 5465185492187562849, guid: 93625e1380984e34e962d1b539187747, type: 3}
-    timeToPressAllButtons: 8
-    timeUntilNextWave: 1
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 4
-    specificButtons:
-    - {fileID: 5465185492187562849, guid: 214085c504bd45b469e4fc85166b4b81, type: 3}
-    - {fileID: 5465185492187562849, guid: d5506f3e28fe6774e8d4007a9869f731, type: 3}
-    - {fileID: 5465185492187562849, guid: 5cd5aad15dd28a048b0c4647d816ea27, type: 3}
-    - {fileID: 5465185492187562849, guid: 3db3e003499c00748a326398e97f8e4f, type: 3}
-    timeToPressAllButtons: 4
-    timeUntilNextWave: 2
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 3
-    specificButtons:
-    - {fileID: 5465185492187562849, guid: 214085c504bd45b469e4fc85166b4b81, type: 3}
-    - {fileID: 5465185492187562849, guid: d5506f3e28fe6774e8d4007a9869f731, type: 3}
-    - {fileID: 5465185492187562849, guid: 5cd5aad15dd28a048b0c4647d816ea27, type: 3}
-    - {fileID: 5465185492187562849, guid: 3db3e003499c00748a326398e97f8e4f, type: 3}
-    timeToPressAllButtons: 4
-    timeUntilNextWave: 0.5
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 3
-    specificButtons:
-    - {fileID: 5465185492187562849, guid: 214085c504bd45b469e4fc85166b4b81, type: 3}
-    - {fileID: 5465185492187562849, guid: d5506f3e28fe6774e8d4007a9869f731, type: 3}
-    - {fileID: 5465185492187562849, guid: 5cd5aad15dd28a048b0c4647d816ea27, type: 3}
-    - {fileID: 5465185492187562849, guid: 3db3e003499c00748a326398e97f8e4f, type: 3}
-    timeToPressAllButtons: 4
-    timeUntilNextWave: 3
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 5
-    specificButtons:
-    - {fileID: 5465185492187562849, guid: 214085c504bd45b469e4fc85166b4b81, type: 3}
-    - {fileID: 5465185492187562849, guid: d5506f3e28fe6774e8d4007a9869f731, type: 3}
-    - {fileID: 5465185492187562849, guid: 5cd5aad15dd28a048b0c4647d816ea27, type: 3}
-    - {fileID: 5465185492187562849, guid: 3db3e003499c00748a326398e97f8e4f, type: 3}
-    timeToPressAllButtons: 4
-    timeUntilNextWave: 5
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 2
-    specificButtons:
-    - {fileID: 5465185492187562849, guid: e8cc0b4c1bfa61243a14872de15b33a0, type: 3}
-    - {fileID: 5465185492187562849, guid: 8d20e4e0db4e1e246a2bfa6e865d9c64, type: 3}
-    - {fileID: 5465185492187562849, guid: 5e4b63182f5e61048b0cfe25d974289f, type: 3}
-    - {fileID: 5465185492187562849, guid: 93625e1380984e34e962d1b539187747, type: 3}
-    timeToPressAllButtons: 4
-    timeUntilNextWave: 0.5
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 3
-    specificButtons:
-    - {fileID: 5465185492187562849, guid: e8cc0b4c1bfa61243a14872de15b33a0, type: 3}
-    - {fileID: 5465185492187562849, guid: 8d20e4e0db4e1e246a2bfa6e865d9c64, type: 3}
-    - {fileID: 5465185492187562849, guid: 5e4b63182f5e61048b0cfe25d974289f, type: 3}
-    - {fileID: 5465185492187562849, guid: 93625e1380984e34e962d1b539187747, type: 3}
-    timeToPressAllButtons: 4
-    timeUntilNextWave: 0.5
-    buttonDamage: 5
-  - spawnRandomButtons: 0
-    randomButtonAmount: 0
-    specificButtons:
-    - {fileID: 5465185492187562849, guid: 214085c504bd45b469e4fc85166b4b81, type: 3}
-    - {fileID: 5465185492187562849, guid: d5506f3e28fe6774e8d4007a9869f731, type: 3}
-    - {fileID: 5465185492187562849, guid: 5cd5aad15dd28a048b0c4647d816ea27, type: 3}
-    - {fileID: 5465185492187562849, guid: 3db3e003499c00748a326398e97f8e4f, type: 3}
-    timeToPressAllButtons: 4
-    timeUntilNextWave: 0.5
-    buttonDamage: 5
-  - spawnRandomButtons: 1
-    randomButtonAmount: 5
-    specificButtons:
-    - {fileID: 5465185492187562849, guid: 214085c504bd45b469e4fc85166b4b81, type: 3}
-    - {fileID: 5465185492187562849, guid: d5506f3e28fe6774e8d4007a9869f731, type: 3}
-    - {fileID: 5465185492187562849, guid: 5cd5aad15dd28a048b0c4647d816ea27, type: 3}
-    - {fileID: 5465185492187562849, guid: 3db3e003499c00748a326398e97f8e4f, type: 3}
-    timeToPressAllButtons: 4
-    timeUntilNextWave: 1
-    buttonDamage: 5
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
+  - button_press: 4
+    button_hold: 0
+    button_quick: 0
