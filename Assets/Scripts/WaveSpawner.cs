@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class WaveSpawner : MonoBehaviour
 {
   [SerializeField] List<BoxCollider2D> buttonSpawnZones;
-  [SerializeField] List<TruchanButton> randomButtonPool;
+  [SerializeField] List<RootButton> possibleButtons;
   [SerializeField] public UnityEvent OnWaveFinished;
   [SerializeField] public UnityEvent OnWaveCollectionFinished;
   List<TruchanButton> currentWaveButtons = new();
@@ -38,33 +38,37 @@ public class WaveSpawner : MonoBehaviour
 
   private void SpawnButtonWave(ButtonWave buttonWave)
   {
-    currentWaveButtons = new();
-    if (buttonWave.spawnRandomButtons)
-    {
-      List<int> spawnedButtons = new();
-      for (int i = 0; i < buttonWave.randomButtonAmount; i++)
-      {
-        int? randomButtonIndex = null;
-        while (randomButtonIndex.HasValue == false || spawnedButtons.Contains(randomButtonIndex.Value))
+        List<RootButton> spawnedButtons = new(possibleButtons);
+        spawnedButtons.OrderBy(x => Random.value).ToList();
+        int length = possibleButtons.Count,
+            pressCount = buttonWave.button_press,
+            holdCount = buttonWave.button_hold,
+            quickCount = buttonWave.button_quick;
+        for (int i = 0; i < length; i++)
         {
-          randomButtonIndex = Random.Range(0, randomButtonPool.Count);
+            TruchanButton b;
+            if (pressCount > 0)
+            {
+                pressCount--;
+                b = spawnedButtons[0].press;
+            }
+            else if (holdCount > 0)
+            {
+                holdCount--;
+                b = spawnedButtons[0].hold;
+            }
+            else if (quickCount > 0)
+            {
+                quickCount--;
+                b = spawnedButtons[0].quick;
+            }
+            else
+                break;
+            spawnedButtons.RemoveAt(0);
+            SpawnButton(buttonWave, b);
         }
-        spawnedButtons.Add(randomButtonIndex.Value);
-        if (spawnedButtons.Count == randomButtonPool.Count)
-          spawnedButtons.Clear();
-        SpawnButton(buttonWave, randomButtonPool[randomButtonIndex.Value]);
-      }
     }
-    else
-    {
-      foreach (var buttonPrefab in buttonWave.specificButtons)
-      {
-        SpawnButton(buttonWave, buttonPrefab);
-      }
-    }
-  }
-
-  private void SpawnButton(ButtonWave wave, TruchanButton buttonPrefab)
+    private void SpawnButton(ButtonWave wave, TruchanButton buttonPrefab)
   {
     var spawnedButton = Instantiate(buttonPrefab);
     spawnedButton.duration = wave.timeToPressAllButtons;

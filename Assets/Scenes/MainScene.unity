@@ -389,15 +389,15 @@ MonoBehaviour:
   - {fileID: 610496822}
   - {fileID: 200305434}
   - {fileID: 610496822}
-  randomButtonPool:
-  - {fileID: 5465185492187562849, guid: 8d20e4e0db4e1e246a2bfa6e865d9c64, type: 3}
-  - {fileID: 5465185492187562849, guid: 5cd5aad15dd28a048b0c4647d816ea27, type: 3}
-  - {fileID: 5465185492187562849, guid: e8cc0b4c1bfa61243a14872de15b33a0, type: 3}
-  - {fileID: 5465185492187562849, guid: 3db3e003499c00748a326398e97f8e4f, type: 3}
-  - {fileID: 5465185492187562849, guid: 5e4b63182f5e61048b0cfe25d974289f, type: 3}
-  - {fileID: 5465185492187562849, guid: 93625e1380984e34e962d1b539187747, type: 3}
-  - {fileID: 5465185492187562849, guid: 214085c504bd45b469e4fc85166b4b81, type: 3}
-  - {fileID: 5465185492187562849, guid: d5506f3e28fe6774e8d4007a9869f731, type: 3}
+  possibleButtons:
+  - {fileID: 3089367796840732438, guid: 7aa80dd26fad2ab4fb83645288ef25ac, type: 3}
+  - {fileID: 1144016601477357663, guid: 6a25f89bbae3264469d6466bd288c985, type: 3}
+  - {fileID: 3033664013889754974, guid: f3fa1bbc4ad79994b85ac43905b1690a, type: 3}
+  - {fileID: 6483146197555063241, guid: 27f0658a1dd6e724daf6db332c8373cb, type: 3}
+  - {fileID: 8368419821333734930, guid: 9b91ced31b0c1da4d9b5d12178193e68, type: 3}
+  - {fileID: 2345008803828735682, guid: 17f548e3ecbd144489605d25ea33a809, type: 3}
+  - {fileID: 8544161623526973019, guid: 70c63db3f9805d64aa347ae5a2d980ab, type: 3}
+  - {fileID: 1489912733171579794, guid: 63adba003a868d24c85179028b8c9059, type: 3}
   OnWaveFinished:
     m_PersistentCalls:
       m_Calls:
