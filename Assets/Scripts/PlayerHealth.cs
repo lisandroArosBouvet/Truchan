@@ -30,23 +30,24 @@ public class PlayerHealth : MonoBehaviour
   {
     invulTimer += Time.deltaTime;
     UpdateHealthUI();
-  }
+    }
 
-  public void DealDamage(int damage, bool ignoreInvulnerability = false)
-  {
-    if (ignoreInvulnerability == false && invulTimer < invulnerabilityTime)
-      return;
-    currentHealth -= damage;
-    currentHealth = Math.Max(currentHealth, 0);
+    public void DealDamage(int damage, bool ignoreInvulnerability = false)
+    {
+        if (ignoreInvulnerability == false && invulTimer < invulnerabilityTime)
+            return;
+        currentHealth -= damage;
+        DifficultyManager.Instance.LowerDifficultyForLostLife(damage, maxHealth);
+        currentHealth = Math.Max(currentHealth, 0);
         spectators.SetPublics(currentHealth, maxHealth);
-    invulTimer = 0;
-    if (currentHealth == 0)
-      OnDeath?.Invoke();
-    else if (invulTimer > invulnerabilityTime)
-      OnDamageTaken?.Invoke();
-  }
+        invulTimer = 0;
+        if (currentHealth == 0)
+            OnDeath?.Invoke();
+        else if (invulTimer > invulnerabilityTime)
+            OnDamageTaken?.Invoke();
+    }
 
-  private void UpdateHealthUI()
+    private void UpdateHealthUI()
   {
     healthBar.fillAmount = Mathf.InverseLerp(0, maxHealth, currentHealth);
     if (invulTimer < invulnerabilityTime)

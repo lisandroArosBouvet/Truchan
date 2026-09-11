@@ -14,6 +14,7 @@ public class TruchanButton : MonoBehaviour
   [SerializeField] public AudioClip buttonDestroyedSound;
   public SpriteRenderer spriteRenderer;
   bool damageDealt = false;
+    bool isPressed = false;
   private void Awake()
   {
     durationTimer = duration;
@@ -25,6 +26,7 @@ public class TruchanButton : MonoBehaviour
 
   protected virtual void Update()
   {
+        if (isPressed)            return;
     durationTimer += Time.deltaTime;
     spriteRenderer.color = Color.Lerp(Color.white, Color.darkRed, Mathf.InverseLerp(0, duration, durationTimer));
     if (durationTimer > duration && damageDealt == false)
@@ -43,6 +45,7 @@ public class TruchanButton : MonoBehaviour
         Destroy(pressParticle, 2.5f);
         Destroy(gameObject, .5f);
         OnButtonDestroyed?.Invoke(this);
+        isPressed = true;
   }
 
   private void OnDestroy()

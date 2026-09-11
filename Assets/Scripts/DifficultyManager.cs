@@ -8,7 +8,7 @@ public class DifficultyManager : MonoBehaviour
     [Range(0.1f, 1f)]
     public float currentDifficulty = .5f;
 
-    private const float maxModifierDifficult = .25f;
+    private const float maxModifierDifficult = .15f;
     private const float minModifierDifficult = -.35f;
     private float waveFullTime;
     private float startPointWave;
@@ -28,6 +28,13 @@ public class DifficultyManager : MonoBehaviour
         currentDifficulty += remaping;
         currentDifficulty = Mathf.Clamp(currentDifficulty, .1f, 1f);
         Debug.Log($"reming: {remainingTimeWave} / currenDifficult: {currentDifficulty}");
+    }
+    public void LowerDifficultyForLostLife(float damage, float maxLife)
+    {
+        float percentDif = damage / maxLife;
+        percentDif /= 3;
+        currentDifficulty += percentDif;
+        Debug.Log($"PercentDif: {percentDif} - CurrentDifficulty: {currentDifficulty}");
     }
 
     private void Awake()

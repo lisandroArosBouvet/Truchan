@@ -23,24 +23,24 @@ public class WaveSpawner : MonoBehaviour
   {
   }
 
-  public IEnumerator SpawnWaveCollection(ButtonWaveCollection waveCollection)
-  {
-    for (int i = 0; i < waveCollection.waves.Count; i++)
+    public IEnumerator SpawnWaveCollection(ButtonWaveCollection waveCollection)
     {
-      var wave = waveCollection.waves[i];    
-      SpawnButtonWave(wave);
-      yield return new WaitUntil(() => currentWaveButtons.Any() == false);
-      if (i != waveCollection.waves.Count - 1)
-      {
+        for (int i = 0; i < waveCollection.waves.Count; i++)
+        {
+            var wave = waveCollection.waves[i];
+            SpawnButtonWave(wave);
+            yield return new WaitUntil(() => currentWaveButtons.Any() == false);
+            if (i != waveCollection.waves.Count - 1)
+            {
                 DifficultyManager.Instance.EvaluateResultOnWave();
-        OnWaveFinished?.Invoke();
-        yield return new WaitForSeconds(timeUntilNextWave);
-      }
+                OnWaveFinished?.Invoke();
+                yield return new WaitForSeconds(timeUntilNextWave);
+            }
+        }
+        OnWaveCollectionFinished?.Invoke();
     }
-    OnWaveCollectionFinished?.Invoke();
-  }
 
-  private void SpawnButtonWave(ButtonWave buttonWave)
+    private void SpawnButtonWave(ButtonWave buttonWave)
   {
         List<RootButton> spawnedButtons = new(possibleButtons);
         spawnedButtons = spawnedButtons.OrderBy(x => Random.value).ToList();
