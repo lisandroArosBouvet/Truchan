@@ -14,7 +14,7 @@ public class DifficultyManager : MonoBehaviour
     private float initTime = 1f;
     public float actionsForPress { get; private set; } = 1;
     public float actionsForHold { get; private set; } = 2f;
-    public float actionsForQuick { get; private set; } = 2.5f;
+    public float actionsForQuick { get; private set; } = 3.2f;
 
     private float totalTime;
     private float goalActionForTime;
