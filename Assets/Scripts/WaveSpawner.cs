@@ -13,11 +13,7 @@ public class WaveSpawner : MonoBehaviour
   List<TruchanButton> currentWaveButtons = new();
   [SerializeField] AudioManager audioManager;
 
-    public float pressTime = 2f;
-    public float holdTime = 3f;
-    public float quickTime = 4f;
-    public float baseTimePressAllButtons = 5f;
-    public float timeUntilNextWave = 2;
+    public float timeUntilNextWave = 2.5f;
     public int buttonDamage = 10;
     private void Awake()
   {
@@ -42,20 +38,15 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnButtonWave(ButtonWave buttonWave)
   {
+        DifficultyManager.Instance.InitWave();
         List<RootButton> spawnedButtons = new(possibleButtons);
         spawnedButtons = spawnedButtons.OrderBy(x => Random.value).ToList();
-        int length = possibleButtons.Count,
-            pressCount = buttonWave.button_press,
-            holdCount = buttonWave.button_hold,
-            quickCount = buttonWave.button_quick;
+        int length = possibleButtons.Count;
+        int pressCount = buttonWave.button_press;
+        int holdCount = buttonWave.button_hold;
+        int quickCount = buttonWave.button_quick;
 
-        float timeToPressAllButtons =
-            baseTimePressAllButtons +
-            pressCount * pressTime +
-            holdCount * holdTime +
-            quickCount * quickTime;
-        timeToPressAllButtons *= DifficultyManager.Instance.currentDifficulty;
-        DifficultyManager.Instance.SetWaveFullTime(timeToPressAllButtons);
+        float timeToPressAllButtons = DifficultyManager.Instance.GetTimeForThisWave(pressCount, holdCount, quickCount);
         for (int i = 0; i < length; i++)
         {
             TruchanButton b;

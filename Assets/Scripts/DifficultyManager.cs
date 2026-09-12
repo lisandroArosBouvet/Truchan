@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DifficultyManager : MonoBehaviour
@@ -5,36 +8,66 @@ public class DifficultyManager : MonoBehaviour
     // Instancia estática accesible desde cualquier lugar
     public static DifficultyManager Instance { get; private set; }
 
-    [Range(0.1f, 1f)]
-    public float currentDifficulty = .5f;
+    private float[] timeForActions = { 2.4f,2,1.8f, 1.6f,1,1f, .9f, .7f, .45f,.35f };
+    private int currentDifficultIndex = 5;
 
-    private const float maxModifierDifficult = .15f;
-    private const float minModifierDifficult = -.35f;
-    private float waveFullTime;
-    private float startPointWave;
+    private float initTime = 1f;
+    public float actionsForPress { get; private set; } = 1;
+    public float actionsForHold { get; private set; } = 2f;
+    public float actionsForQuick { get; private set; } = 2.5f;
 
-    public void SetWaveFullTime(float t)
+    private float totalTime;
+    private float goalActionForTime;
+    private float startTime;
+    private const float PERCENT_TO_UP_DIFFICULT = .6f;
+    private const float PERCENT_TO_DOWN_DIFFICULT = .8f;
+
+    private List<float> inputTimers = new List<float>();
+
+    internal float GetTimeForThisWave(int pressCount, int holdCount, int quickCount)
     {
-        waveFullTime = t;
-        startPointWave = Time.time;
-        Debug.Log($"All time: {waveFullTime}");
+        float actionTime = timeForActions[currentDifficultIndex];
+        float waveTotalTime =
+            (initTime +
+            actionsForPress * pressCount +
+            actionsForHold * holdCount +
+            actionsForQuick * quickCount) *
+            actionTime
+            ;
+        totalTime = waveTotalTime;
+        goalActionForTime = totalTime/(actionsForPress * pressCount +actionsForHold * holdCount + actionsForQuick * quickCount);
+        return waveTotalTime;
+    }
+    public void InitWave()
+    {
+        startTime = Time.time;
+        inputTimers.Clear();
+    }
+    public void PressCorrectButton(float value)
+    {
+        inputTimers.Add(value);
     }
 
     public void EvaluateResultOnWave()
     {
-        float remainingTimeWave = Time.time - startPointWave;
-        float playerPerformance = remainingTimeWave / waveFullTime;
-        float remaping = Mathf.Lerp(minModifierDifficult, maxModifierDifficult, playerPerformance);
-        currentDifficulty += remaping;
-        currentDifficulty = Mathf.Clamp(currentDifficulty, .1f, 1f);
-        Debug.Log($"reming: {remainingTimeWave} / currenDifficult: {currentDifficulty}");
+        var allActions = inputTimers.Sum();
+        var playerTimeToFinish = Time.time - startTime;
+        var playerPerformance = playerTimeToFinish / allActions;
+
+       Debug.Log($"TotalTime {totalTime} - Resultado promedio de inputs: Esperado {goalActionForTime}({totalTime}) / Player: {playerPerformance}({playerTimeToFinish}) /Percent: {playerPerformance/goalActionForTime}");
+        if (playerPerformance < (goalActionForTime * PERCENT_TO_UP_DIFFICULT))
+            ChangeDifficult(+1);
+        else if (playerPerformance > goalActionForTime * PERCENT_TO_DOWN_DIFFICULT)
+            ChangeDifficult(-1);
+
+        inputTimers.Clear();
     }
-    public void LowerDifficultyForLostLife(float damage, float maxLife)
+
+    private void ChangeDifficult(int v)
     {
-        float percentDif = damage / maxLife;
-        percentDif /= 3;
-        currentDifficulty += percentDif;
-        Debug.Log($"PercentDif: {percentDif} - CurrentDifficulty: {currentDifficulty}");
+        currentDifficultIndex += v;
+        currentDifficultIndex = Mathf.Clamp(currentDifficultIndex, 0,timeForActions.Length-1);
+        Debug.Log("currentDifficultIndex: " + currentDifficultIndex);
     }
 
     private void Awake()

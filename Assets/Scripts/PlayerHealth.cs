@@ -12,7 +12,6 @@ public class PlayerHealth : MonoBehaviour
   [SerializeField] Sprite lowHealthSprite;
   [SerializeField] Sprite damagedSprite;
   [SerializeField] Sprite deathSprite;
-  [SerializeField] float damagePortraitDuration = 1f;
   [SerializeField] UnityEvent OnDeath;
   [SerializeField] UnityEvent OnDamageTaken;
   [SerializeField] float invulnerabilityTime = 1f;
@@ -37,7 +36,6 @@ public class PlayerHealth : MonoBehaviour
         if (ignoreInvulnerability == false && invulTimer < invulnerabilityTime)
             return;
         currentHealth -= damage;
-        DifficultyManager.Instance.LowerDifficultyForLostLife(damage, maxHealth);
         currentHealth = Math.Max(currentHealth, 0);
         spectators.SetPublics(currentHealth, maxHealth);
         invulTimer = 0;

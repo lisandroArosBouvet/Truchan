@@ -16,45 +16,36 @@ MonoBehaviour:
   - button_press: 4
     button_hold: 0
     button_quick: 0
-  - button_press: 4
+  - button_press: 5
+    button_hold: 0
+    button_quick: 0
+  - button_press: 6
     button_hold: 0
     button_quick: 0
   - button_press: 4
     button_hold: 0
     button_quick: 0
-  - button_press: 4
+  - button_press: 2
     button_hold: 0
     button_quick: 0
-  - button_press: 4
+  - button_press: 5
     button_hold: 0
     button_quick: 0
-  - button_press: 4
+  - button_press: 3
     button_hold: 0
     button_quick: 0
-  - button_press: 4
+  - button_press: 6
     button_hold: 0
     button_quick: 0
-  - button_press: 4
+  - button_press: 8
     button_hold: 0
     button_quick: 0
-  - button_press: 4
+  - button_press: 3
     button_hold: 0
     button_quick: 0
-  - button_press: 4
+  - button_press: 5
     button_hold: 0
     button_quick: 0
-  - button_press: 4
-    button_hold: 0
-    button_quick: 0
-  - button_press: 4
-    button_hold: 0
-    button_quick: 0
-  - button_press: 4
-    button_hold: 0
-    button_quick: 0
-  - button_press: 4
-    button_hold: 0
-    button_quick: 0
-  - button_press: 4
+  - button_press: 7
     button_hold: 0
     button_quick: 0

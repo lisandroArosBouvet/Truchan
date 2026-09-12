@@ -36,7 +36,7 @@ public class HoldButton : TruchanButton
       if (heldTimer >= timeToHold)
       {
         buttonDestroyed = true;
-        base.OnPressed();
+        base.OnPressed(DifficultyManager.Instance.actionsForHold);
       }
       UpdateSprite();
       if (outline != null)
@@ -71,7 +71,7 @@ public class HoldButton : TruchanButton
     }
   }
 
-  public override void OnPressed()
+  public override void OnPressed(float actionValue)
   {
     isButtonPressed = true;
   }

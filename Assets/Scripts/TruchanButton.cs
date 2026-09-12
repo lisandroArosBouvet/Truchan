@@ -37,7 +37,7 @@ public class TruchanButton : MonoBehaviour
       OnButtonDestroyed?.Invoke(this);
     }
   }
-  public virtual void OnPressed()
+  public virtual void OnPressed(float actionValue)
   {
         anim.SetTrigger("pressDissapear");
         pressParticle.transform.SetParent(null);
@@ -46,6 +46,7 @@ public class TruchanButton : MonoBehaviour
         Destroy(gameObject, .5f);
         OnButtonDestroyed?.Invoke(this);
         isPressed = true;
+        DifficultyManager.Instance.PressCorrectButton(actionValue);
   }
 
   private void OnDestroy()

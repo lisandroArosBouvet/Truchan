@@ -48,7 +48,7 @@ public class ButtonDestroyer : MonoBehaviour
           {
             foreach(var button in buttonsWithKey)
             {
-              button.OnPressed();
+              button.OnPressed(DifficultyManager.Instance.actionsForPress);
 
                             anim.SetTrigger("magic");
                             hands.sprite = buttonDestroySprite[Random.Range(0, buttonDestroySprite.Length)] ;

@@ -16,12 +16,12 @@ public class QuickPressButton : TruchanButton
     if (spriteRenderer == null)
       spriteRenderer = GetComponent<SpriteRenderer>();
   }
-  public override void OnPressed()
+  public override void OnPressed(float actionValue)
   {
     timesPressed++;
     if (timesPressed >= pressAmount)
     {
-      base.OnPressed();
+      base.OnPressed(DifficultyManager.Instance.actionsForQuick);
     }
     else
     {
